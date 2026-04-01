@@ -19,6 +19,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -34,6 +35,7 @@ body {
   line-height: 1.7;
   opacity: 0;
   transition: opacity 0.45s ease;
+  overflow-x: hidden;
 }
 
 body.nmp-loaded {
@@ -528,7 +530,7 @@ main > section:last-of-type a:hover {
 }
 
 /* ── Contact Action Buttons ────────────────────────────────── */
- 
+
 .nmp-contact-actions {
   display: flex;
   flex-wrap: wrap;
@@ -536,7 +538,7 @@ main > section:last-of-type a:hover {
   align-items: center;
   justify-content: center;
 }
- 
+
 .nmp-btn {
   display: inline-block;
   font-family: 'Source Sans 3', sans-serif;
@@ -549,53 +551,41 @@ main > section:last-of-type a:hover {
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
- 
+
 /* Primary — Gmail Web */
 .nmp-btn--primary {
   background-color: #FCCA37;
   color: #16214E;
   box-shadow: 0 4px 16px rgba(252, 202, 55, 0.3);
 }
- 
+
 .nmp-btn--primary:hover {
   background-color: #F4CD5B;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(252, 202, 55, 0.45);
 }
- 
+
 .nmp-btn--primary:active {
   transform: translateY(0);
   box-shadow: 0 2px 8px rgba(252, 202, 55, 0.2);
 }
- 
+
 /* Secondary — Mail App */
 .nmp-btn--secondary {
   background-color: #FCCA37;
   color: #16214E;
   box-shadow: 0 4px 16px rgba(252, 202, 55, 0.3);
 }
- 
+
 .nmp-btn--secondary:hover {
   background-color: #F4CD5B;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(252, 202, 55, 0.45);
 }
- 
+
 .nmp-btn--secondary:active {
   transform: translateY(0);
   box-shadow: 0 2px 8px rgba(252, 202, 55, 0.2);
-}
- 
-@media (max-width: 480px) {
-  .nmp-contact-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
- 
-  .nmp-btn {
-    width: 100%;
-    text-align: center;
-  }
 }
 
 /* ── Footer ────────────────────────────────────────────────── */
@@ -643,32 +633,44 @@ footer p:last-child {
 .nmp-reveal:nth-child(3) { transition-delay: 0.2s; }
 .nmp-reveal:nth-child(4) { transition-delay: 0.3s; }
 
-/* ── Responsive ────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   Breakpoints: 1024px (tablet) · 768px (mobile) · 480px (small)
+   ═══════════════════════════════════════════════════════════ */
 
-@media (max-width: 900px) {
-  main > section:nth-child(3) .container {
-    grid-template-columns: 1fr;
-    row-gap: 1.25rem;
-    column-gap: 0;
+/* ── 1024px — Tablet ───────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+
+  /* What We Do: 3-col → 2-col */
+  main > section:nth-child(3) {
+    grid-template-columns: 1fr 1fr;
+    padding: 4.5rem 2rem;
+    row-gap: 1.5rem;
   }
 
-  main > section:nth-child(4) .container {
-    grid-template-columns: 1fr;
-    row-gap: 1.25rem;
-    column-gap: 0;
+  main > section:nth-child(3) > h2 {
+    grid-column: 1 / -1;
   }
 
-  main > section:last-of-type .container {
-    grid-template-columns: 1fr;
-    row-gap: 1.25rem;
+  /* Owners: 3-col → 2-col */
+  main > section:nth-child(4) {
+    grid-template-columns: 1fr 1fr;
+    padding: 4.5rem 2rem;
+    row-gap: 1.5rem;
   }
 
-  main > section:last-of-type .container > article.location {
-    grid-column: 1;
+  main > section:nth-child(4) > h2 {
+    grid-column: 1 / -1;
   }
+
 }
 
+/* ── 768px — Mobile ────────────────────────────────────────── */
+
 @media (max-width: 768px) {
+
+  /* Header stacks logo over nav */
   header {
     flex-direction: column;
     align-items: flex-start;
@@ -678,39 +680,127 @@ footer p:last-child {
 
   nav ul {
     gap: 1.5rem;
+    flex-wrap: wrap;
   }
 
+  /* Hero */
   main > section:first-child {
-    padding: 4.5rem 1.5rem 4rem;
+    padding: 4rem 1.5rem 3.5rem;
   }
 
+  /* About */
+  main > section:nth-child(2) {
+    padding: 3.5rem 1.5rem;
+    max-width: 100%;
+  }
+
+  /* What We Do: 2-col → 1-col */
   main > section:nth-child(3) {
-    padding: 4rem 1.5rem;
+    grid-template-columns: 1fr;
+    padding: 3.5rem 1.5rem;
+    row-gap: 1.25rem;
+    column-gap: 0;
   }
 
+  main > section:nth-child(3) > h2 {
+    grid-column: 1;
+    margin-bottom: 1.75rem;
+  }
+
+  /* Owners: 2-col → 1-col */
   main > section:nth-child(4) {
-    padding: 4rem 1.5rem;
+    grid-template-columns: 1fr;
+    padding: 3.5rem 1.5rem;
+    row-gap: 1.25rem;
+    column-gap: 0;
   }
 
+  main > section:nth-child(4) > h2 {
+    grid-column: 1;
+    margin-bottom: 1.75rem;
+  }
+
+  /* Contact intro */
+  main > section:has(a[href^="mailto"]) {
+    padding: 3.5rem 1.5rem 3rem;
+    max-width: 100%;
+  }
+
+  /* Contact details: 2-col → 1-col */
   main > section:last-of-type {
-    padding: 4rem 1.5rem;
+    padding: 3.5rem 1.5rem;
+    margin: 1.5rem 0;
   }
 
+  main > section:last-of-type .container {
+    grid-template-columns: 1fr;
+    row-gap: 1.25rem;
+    padding-inline: 0;
+  }
+
+  main > section:last-of-type .container > h2 {
+    grid-column: 1;
+  }
+
+  main > section:last-of-type .container > article.location {
+    grid-column: 1;
+  }
+
+  /* Footer */
   footer {
     flex-direction: column;
     align-items: flex-start;
     padding: 1.5rem;
   }
+
 }
 
+/* ── 480px — Small Mobile ──────────────────────────────────── */
+
 @media (max-width: 480px) {
+
   nav ul {
     gap: 1rem;
   }
 
+  main > section:nth-child(3),
+  main > section:nth-child(4) {
+    padding: 3rem 1.25rem;
+  }
+
+  main > section:has(a[href^="mailto"]) {
+    padding: 3rem 1.25rem 2.5rem;
+  }
+
+  main > section:last-of-type {
+    padding: 3rem 1.25rem;
+    margin: 1rem 0;
+  }
+
+  /* Contact action buttons: stack full width */
+  .nmp-contact-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nmp-btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.9rem 1.5rem;
+  }
+
+  /* Legacy mailto button fallback */
   a[href^="mailto"] button,
   button[type="button"] {
     width: 100%;
     text-align: center;
   }
+
+  /* Prevent heading letter-spacing from causing overflow */
+  h1,
+  h2 {
+    letter-spacing: 0.02em;
+    word-break: break-word;
+  }
+
 }
