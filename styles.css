@@ -6,6 +6,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* ── Reset & Base ──────────────────────────────────────────── */
 
@@ -24,7 +25,7 @@ html {
 }
 
 body {
-  font-family: 'Noto Serif Display', serif;
+  font-family: 'Noto Sans', serif;
   font-weight: 400;
   color: #16214E;
   background-color: #FEFEFE;
@@ -555,7 +556,7 @@ main > section:last-of-type a:hover {
 
 .nmp-btn {
   display: inline-block;
-  font-family: 'Noto Serif Display', serif;
+  font-family: 'Noto Sans', serif;
   font-size: 0.9375rem;
   font-weight: 700;
   letter-spacing: 0.12em;
