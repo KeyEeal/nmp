@@ -310,10 +310,10 @@ main > section:nth-child(4) {
   padding: 5.5rem 2.5rem;
   max-width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto 1fr;
   column-gap: 1.75rem;
-  row-gap: 0;
+  row-gap: 10px;
   align-items: start;
 }
 
@@ -388,7 +388,7 @@ main > section:has(a[href^="mailto"]) {
 }
 
 main > section:has(a[href^="mailto"]) h2 {
-  color: #16214E;
+  color: #d4ce76;
   margin-bottom: 0.5rem;
 }
 
