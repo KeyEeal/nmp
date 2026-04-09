@@ -25,7 +25,7 @@ html {
 }
 
 body {
-  font-family: 'Noto Sans', serif;
+  font-family: 'Noto Sans', sans-serif;
   font-weight: 400;
   color: #16214E;
   background-color: #FEFEFE;
@@ -62,7 +62,7 @@ ul {
 /* Base: 16px → ×1.618 → 26px → ×1.618 → 42px               */
 
 h1 {
-  font-family: 'Noto Serif Display', serif;
+  font-family: 'Noto Serif Display', sans-serif;
   font-size: clamp(2rem, 5vw, 2.625rem); /* ~42px */
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -70,7 +70,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'Noto Serif Display', serif;
+  font-family: 'Noto Serif Display', sans-serif;
   font-size: clamp(1.5rem, 3vw, 1.625rem); /* ~26px */
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -79,7 +79,7 @@ h2 {
 }
 
 h3 {
-  font-family: 'Noto Serif Display', serif;
+  font-family: 'Noto Sans', sans-serif;
   font-size: 1.25rem; /* ~20px */
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -140,7 +140,7 @@ nav ul {
 }
 
 nav ul li a {
-  font-family: 'Noto Serif Display', serif;;
+  font-family: 'Noto Sans', sans-serif;;
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -194,7 +194,7 @@ main > section:first-child::before {
 }
 
 main > section:first-child h2 {
-  font-family: 'Noto Serif Display', serif;
+  font-family: 'Noto Sans', sans-serif;
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 700;
   color: #FEFEFE;
@@ -425,7 +425,7 @@ button[type="button"] {
   display: inline-block;
   background-color: #FCCA37;
   color: #16214E;
-  font-family: 'Noto Serif Display', serif;
+  font-family: 'Noto Sans', sans-serif;
   font-size: 0.9375rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -556,7 +556,7 @@ main > section:last-of-type a:hover {
 
 .nmp-btn {
   display: inline-block;
-  font-family: 'Noto Sans', serif;
+  font-family: 'Noto Sans', sans-serif;
   font-size: 0.9375rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -618,7 +618,7 @@ footer {
 }
 
 footer p:first-child {
-  font-family: 'Noto Serif Display', serif;
+  font-family: 'Noto Sans', sans-serif;
   font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: 0.1em;
