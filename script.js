@@ -26,7 +26,19 @@
     });
   }
 
-  /* ── 3. Scroll Reveal via IntersectionObserver ───────────── */
+  /* ── 3. Staff & Owners expandable buttons ───────────── */
+
+  document.querySelectorAll('article.expandable'). forEach(article => {
+    const header = article.querySelector('.card-header');
+    const btn = article.querySelector('.expand-btn');
+
+    header.addEventListener('click', () => {
+      const isOpen = article.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded'. isOpen);
+    });
+  });
+
+  /* ── 4. Scroll Reveal via IntersectionObserver ───────────── */
 
   function initScrollReveal() {
     if (!('IntersectionObserver' in window)) {
@@ -57,7 +69,7 @@
     });
   }
 
-  /* ── 4. Mark Elements for Scroll Reveal ─────────────────── */
+  /* ── 5. Mark Elements for Scroll Reveal ─────────────────── */
 
   function markRevealTargets() {
     var selectors = [

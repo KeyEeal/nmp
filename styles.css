@@ -261,7 +261,7 @@ main > section:nth-child(3) {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto 1fr;
   column-gap: 1.75rem;
-  row-gap: 0;
+  row-gap: 10px;
   align-items: start;
   border-radius: 12px;
 }
@@ -309,24 +309,23 @@ main > section:nth-child(3) p {
   font-size: 0.9375rem;
 }
 
-/* ── Owners Section ────────────────────────────────────────── */
+/* ── How We Operate Section ────────────────────────────────────── */
 
 main > section:nth-child(4) {
   padding: 5.5rem 2.5rem;
-  max-width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto 1fr;
   column-gap: 1.75rem;
   row-gap: 10px;
   align-items: start;
   border-radius: 12px;
+  margin-top: 30px;
 }
 
 main > section:nth-child(4) > h2 {
   grid-column: 1 / -1;
   text-align: center;
-  color: #FEFEFE;
   margin-bottom: 2.5rem;
 }
 
@@ -340,6 +339,59 @@ main > section:nth-child(4) > h2::after {
 }
 
 main > section:nth-child(4) article {
+  border-radius: 2px;
+  padding: 2.25rem 2rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 12px;
+}
+
+main > section:nth-child(4) article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(22, 33, 78, 0.28);
+}
+
+main > section:nth-child(4) h3 {
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+main > section:nth-child(4) p {
+  font-weight: 300;
+  font-size: 0.9375rem;
+}
+
+/* ── Owners Section ────────────────────────────────────────── */
+
+main > section:nth-child(5) {
+  padding: 5.5rem 2.5rem;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: 1.75rem;
+  row-gap: 10px;
+  align-items: start;
+  border-radius: 12px;
+}
+
+main > section:nth-child(5) > h2 {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #FEFEFE;
+  margin-bottom: 2.5rem;
+}
+
+main > section:nth-child(5) > h2::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  background-color: #FCCA37;
+  margin: 0.75rem auto 0;
+}
+
+main > section:nth-child(5) article {
   border: 1px solid #53ABE0;
   border-top: 4px solid #16214E;
   border-radius: 2px;
@@ -349,13 +401,13 @@ main > section:nth-child(4) article {
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-top-color 0.25s ease;
 }
 
-main > section:nth-child(4) article:hover {
+main > section:nth-child(5) article:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 32px rgba(22, 33, 78, 0.1);
   border-top-color: #FCCA37;
 }
 
-main > section:nth-child(4) h3 {
+main > section:nth-child(5) h3 {
   color: #16214E;
   font-size: 1rem;
   letter-spacing: 0.04em;
@@ -364,7 +416,7 @@ main > section:nth-child(4) h3 {
   margin-bottom: 0.25rem;
 }
 
-main > section:nth-child(4) article > p:first-of-type {
+main > section:nth-child(5) article > p:first-of-type {
   font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -373,9 +425,85 @@ main > section:nth-child(4) article > p:first-of-type {
   margin-bottom: 1rem;
 }
 
-main > section:nth-child(4) article > p:last-of-type {
+main > section:nth-child(5) article > p:last-of-type {
   font-size: 0.9375rem;
   color: #F4CD5B;
+}
+
+/* ── Expandable card layout ── */
+
+main > section:nth-child(5) article.expandable .card-header{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+main > section:nth-child(5) article.expandable .card-header > div > p {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #53ABE0;
+  margin-bottom: 0;
+}
+
+.expand-btn{
+  flex-shrink: 0;
+  background-color: none;
+  border: 1px solid #53ABE0;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #16214E;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  margin-top: 2px;
+}
+
+.expand-btn:hover{
+  background-color: #16214E;
+  border-color: #16214E;
+  color: #FEFEFE;
+}
+
+/* ── Chevron rotation ── */
+
+.chevron {
+  transition: transform 0.3s ease;
+}
+
+article.expandable.is-open .chevron {
+  transform: rotate(180deg);
+} 
+
+/* ── Collapsible body ── */
+
+.card-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+
+.card-body > p {
+  overflow: hidden;
+  font-size: 0.9375rem;
+  color: #444;
+  margin: 0;
+}
+
+article.expandable.is-open .card-body{
+  grid-template-rows: 1fr;
+}
+
+/* Add top margin to the bio text only when open */
+
+article.expadable.is-open .card-body > p {
+  margin-top: 1rem;
 }
 
 /* ── Contact Page — Contact Us Section ────────────────────── */
@@ -669,7 +797,7 @@ footer p:last-child {
     grid-column: 1 / -1;
   }
 
-  /* Owners: 3-col → 2-col */
+   /* Values we hold dear: 3-col → 2-col */
   main > section:nth-child(4) {
     grid-template-columns: 1fr 1fr;
     padding: 4.5rem 2rem;
@@ -677,6 +805,17 @@ footer p:last-child {
   }
 
   main > section:nth-child(4) > h2 {
+    grid-column: 1 / -1;
+  }
+
+  /* Owners: 3-col → 2-col */
+  main > section:nth-child(5) {
+    grid-template-columns: 1fr;
+    padding: 4.5rem 2rem;
+    row-gap: 1.5rem;
+  }
+
+  main > section:nth-child(5) > h2 {
     grid-column: 1 / -1;
   }
 
@@ -723,8 +862,8 @@ footer p:last-child {
     margin-bottom: 1.75rem;
   }
 
-  /* Owners: 2-col → 1-col */
-  main > section:nth-child(4) {
+    /* Values we hold dear: 3-col → 2-col */
+    main > section:nth-child(4) {
     grid-template-columns: 1fr;
     padding: 3.5rem 1.5rem;
     row-gap: 1.25rem;
@@ -732,6 +871,19 @@ footer p:last-child {
   }
 
   main > section:nth-child(4) > h2 {
+    grid-column: 1;
+    margin-bottom: 1.75rem;
+  }
+
+  /* Owners: 2-col → 1-col */
+  main > section:nth-child(5) {
+    grid-template-columns: 1fr;
+    padding: 3.5rem 1.5rem;
+    row-gap: 1.25rem;
+    column-gap: 0;
+  }
+
+  main > section:nth-child(5) > h2 {
     grid-column: 1;
     margin-bottom: 1.75rem;
   }
