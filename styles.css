@@ -4,10 +4,6 @@
    style.css2
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap');
-
 /* ── Reset & Base ──────────────────────────────────────────── */
 
 *,
@@ -140,7 +136,7 @@ nav ul {
 }
 
 nav ul li a {
-  font-family: 'Noto Sans', sans-serif;;
+  font-family: 'Noto Sans', sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -451,7 +447,7 @@ main > section:nth-child(5) article.expandable .card-header > div > p {
 
 .expand-btn{
   flex-shrink: 0;
-  background-color: none;
+  background-color: transparent;
   border: 1px solid #53ABE0;
   border-radius: 50%;
   width: 32px;
@@ -502,7 +498,7 @@ article.expandable.is-open .card-body{
 
 /* Add top margin to the bio text only when open */
 
-article.expadable.is-open .card-body > p {
+article.expandable.is-open .card-body > p {
   margin-top: 1rem;
 }
 
@@ -971,4 +967,87 @@ footer p:last-child {
     word-break: break-word;
   }
 
+}
+
+/* ── Skip Link ─────────────────────────────────────────────── */
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #16214E;
+  color: #FEFEFE;
+  padding: 8px 16px;
+  z-index: 101;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ── Focus Visible ─────────────────────────────────────────── */
+
+*:focus-visible {
+  outline: 3px solid #FCCA37;
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Reduced Motion ────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .nmp-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  main > section:first-child h2,
+  main > section:first-child p {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── Print Styles ──────────────────────────────────────────── */
+
+@media print {
+  header,
+  footer,
+  .expand-btn,
+  .skip-link,
+  iframe {
+    display: none !important;
+  }
+
+  body {
+    background-image: none !important;
+    opacity: 1 !important;
+  }
+
+  main > section {
+    break-inside: avoid;
+    padding: 1rem 0 !important;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8rem;
+    color: #304769;
+  }
 }

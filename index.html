@@ -3,13 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Namibia Marine Products (NMP) is a 100% Namibian owned fishing company brokering deals and leasing fishing licenses across all species. Based in Walvis Bay." />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Namibia Marine Products" />
+    <meta property="og:description" content="Namibian fishing company brokering deals and leasing fishing licenses. 100% Namibian owned. Based in Walvis Bay." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://namibiamarine.com/" />
+    <meta property="og:image" content="https://namibiamarine.com/images/NMP-fish.png" />
+    <meta property="og:locale" content="en_NA" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Namibia Marine Products" />
+    <meta name="twitter:description" content="Namibian fishing company brokering deals and leasing fishing licenses. 100% Namibian owned." />
+    <meta name="twitter:image" content="https://namibiamarine.com/images/NMP-fish.png" />
+
     <link rel="canonical" href="https://namibiamarine.com/" />
+
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
     <link rel="stylesheet" href="styles.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="./images/NMP-fish.png">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/NMP-fish.png" />
+    <link rel="apple-touch-icon" href="./images/NMP-fish.png" />
+
     <script src="script.js" defer></script>
-    <title>Namibia Marine Products</title>
+    <title>Namibia Marine Products — Fishing Rights & License Leasing</title>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Namibia Marine Products",
+      "url": "https://namibiamarine.com",
+      "logo": "https://namibiamarine.com/images/NMP-fish.png",
+      "description": "Namibian fishing company brokering deals and leasing fishing licenses.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Walvis Bay",
+        "addressRegion": "Erongo Region",
+        "addressCountry": "Namibia"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info.namibiamarine@gmail.com",
+        "contactType": "General Inquiries"
+      }
+    }
+    </script>
+
+    <noscript><style>body { opacity: 1 !important; }</style></noscript>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
       <h1>Namibia Marine Products</h1>
       <nav>
@@ -20,7 +72,7 @@
       </nav>
     </header>
 
-    <main>
+    <main id="main-content">
       <section>
         <h2>Namibia Marine Products</h2>
         <p>Making the right deals. Catching the right opportunities. <br /><br />
@@ -93,13 +145,13 @@
               <h3>Konrad Barnes</h3>
               <p>Managing Director &amp; Shareholder</p>
             </div>
-            <button class="expand-btn" aria-expanded="false" aria-label="Read More About Konrad Barnes">
+            <button class="expand-btn" aria-expanded="false" aria-controls="konrad-bio" aria-label="Read More About Konrad Barnes">
               <svg class="chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 6.5L9 11.5L14 6.5" stroke="currentColor" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 6.5L9 11.5L14 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
           </div>
-          <div class="card-body">
+          <div class="card-body" id="konrad-bio">
             <p>
               Konrad inherited Namibia Marine Products alongside his brother Leon from their father,
               taking over as Managing Director in 2025. Under new management, Konrad and his family
@@ -116,13 +168,13 @@
               <h3>Bianca Barnes</h3>
               <p>General Manager</p>
             </div>
-            <button class="expand-btn" aria-expanded="false" aria-label="Read More About Konrad Barnes">
+            <button class="expand-btn" aria-expanded="false" aria-controls="bianca-bio" aria-label="Read More About Bianca Barnes">
               <svg class="chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 6.5L9 11.5L14 6.5" stroke="currentColor" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 6.5L9 11.5L14 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
           </div>
-          <div class="card-body">
+          <div class="card-body" id="bianca-bio">
             <p>
               Bianca joined NMP as General Manager alongside her husband Konrad when the family took
               over the company in 2025. Together they manage the business day to day, learning the
