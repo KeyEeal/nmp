@@ -1,6 +1,16 @@
 (function () {
   'use strict';
 
+  /* ── 0. CSS :has() Feature Support Detection ─────────────── */
+
+  try {
+    if (!CSS.supports("selector(:has(*))")) {
+      document.documentElement.classList.add("no-has");
+    }
+  } catch (e) {
+    document.documentElement.classList.add("no-has");
+  }
+
   /* ── 1. Page Load Fade ───────────────────────────────────── */
 
   function initPageFade() {
@@ -106,6 +116,92 @@
     });
   }
 
+  /* ── 6. Contact Form (Formspree) ────────────────────────── */
+
+  function initContactForm() {
+    const form = document.getElementById('nmp-contact-form');
+    if (!form) return;
+
+    const modal = document.getElementById('nmp-success-modal');
+    const closeButtons = document.querySelectorAll('.nmp-modal-close, #nmp-close-modal-btn');
+    const overlay = document.querySelector('.nmp-modal-overlay');
+    const submitBtn = form.querySelector('[data-fs-submit-btn]');
+
+    function openModal() {
+      if (!modal) return;
+      modal.classList.add('is-active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      const closeBtn = document.getElementById('nmp-close-modal-btn');
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.remove('is-active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (submitBtn) submitBtn.focus();
+    }
+
+    closeButtons.forEach(btn => btn.addEventListener('click', closeModal));
+    if (overlay) overlay.addEventListener('click', closeModal);
+
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal?.classList.contains('is-active')) closeModal();
+    });
+
+    // Focus trap
+    window.addEventListener('keydown', e => {
+      if (!modal?.classList.contains('is-active')) return;
+      const focusable = modal.querySelectorAll('button, [tabindex="0"]');
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first) {
+          last.focus(); e.preventDefault();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          first.focus(); e.preventDefault();
+        }
+      }
+    });
+
+    // Handle submission manually
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
+
+      try {
+        const response = await fetch('https://formspree.io/f/mpqblbje', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+
+        if (response.ok) {
+          form.reset();
+          openModal();
+        } else {
+          const data = await response.json();
+          const msg = data?.errors?.map(e => e.message).join(', ') || 'Something went wrong. Please try again.';
+          alert(msg);
+        }
+      } catch (err) {
+        alert('Network error. Please check your connection and try again.');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        }
+      }
+    });
+  }
+
   /* ── Init ────────────────────────────────────────────────── */
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -114,6 +210,7 @@
     initExpandableCards();
     markRevealTargets();
     initScrollReveal();
+    initContactForm();
   });
 
 }());

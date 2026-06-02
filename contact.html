@@ -1,15 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Get in touch with NMP — reach out about fishing rights leasing, vessel agreements, or regulatory compliance. We are happy to assist." />
+    <meta name="description"
+        content="Get in touch with NMP — reach out about fishing rights leasing, vessel agreements, or regulatory compliance. We are happy to assist." />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://formspree.io; base-uri 'self'; form-action https://formspree.io" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Contact Namibia Marine Products" />
-    <meta property="og:description" content="Reach out to NMP about fishing rights leasing, vessel agreements, or regulatory compliance." />
+    <meta property="og:description"
+        content="Reach out to NMP about fishing rights leasing, vessel agreements, or regulatory compliance." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://namibiamarine.com/contact" />
     <meta property="og:image" content="https://namibiamarine.com/images/NMP-fish.png" />
@@ -18,7 +23,8 @@
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Contact Namibia Marine Products" />
-    <meta name="twitter:description" content="Reach out to NMP about fishing rights leasing, vessel agreements, or regulatory compliance." />
+    <meta name="twitter:description"
+        content="Reach out to NMP about fishing rights leasing, vessel agreements, or regulatory compliance." />
     <meta name="twitter:image" content="https://namibiamarine.com/images/NMP-fish.png" />
 
     <link rel="canonical" href="https://namibiamarine.com/contact" />
@@ -26,7 +32,9 @@
     <!-- Preconnect for fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
 
     <link rel="shortcut icon" type="image/x-icon" href="./images/NMP-fish.png" />
     <link rel="stylesheet" href="styles.css" />
@@ -35,72 +43,145 @@
     <script src="script.js" defer></script>
     <title>Contact Us — Namibia Marine Products</title>
 
-    <noscript><style>body { opacity: 1 !important; }</style></noscript>
-  </head>
-  <body>
+    <noscript>
+        <style>
+            body {
+                opacity: 1 !important;
+            }
+        </style>
+    </noscript>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
-      <h1>Namibia Marine Products</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
+        <h1>Namibia Marine Products</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy-policy.html">Privacy</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main id="main-content">
-      <section>
-        <h2>Contact Us</h2>
-        <p>
-          Have a question about fishing rights leasing or want to discuss an agreement?
-          Reach out to our team and we will get back to you as soon as possible.
-        </p>
-        <div class="nmp-contact-actions">
-          <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=info.namibiamarine%40gmail.com&su=Inquiry&body=Hello%20NMP%2C%0A%0AI%20would%20like%20to%20inquire%20about%20your%20fishing%20rights%20leasing%20services.%0A%0AKind%20regards%2C"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="nmp-btn nmp-btn--primary"
-          >
-            Send Us a Mail on Gmail
-          </a>
-        </div>
-      </section>
+        <section>
+            <h2>Contact Us</h2>
+            <p>
+                Have a question about fishing rights leasing or want to
+                discuss an agreement? Fill out the form below and we will
+                get back to you as soon as possible.
+            </p>
+            <div data-fs-success style="display:none"></div>
+            <form id="nmp-contact-form">
+                <div class="nmp-form-group">
+                    <label for="nmp-name">Full Name</label>
+                    <input type="text" id="nmp-name" name="name" data-fs-field required placeholder="Your name" />
+                    <span data-fs-error="name"></span>
+                </div>
+                <div class="nmp-form-group">
+                    <label for="nmp-email">Email Address</label>
+                    <input type="email" id="nmp-email" name="email" data-fs-field required
+                        placeholder="you@example.com" />
+                    <span data-fs-error="email"></span>
+                </div>
+                <div class="nmp-form-group">
+                    <label for="nmp-subject">Subject</label>
+                    <select id="nmp-subject" name="subject" data-fs-field required>
+                        <option value="" disabled selected>
+                            Choose a topic
+                        </option>
+                        <option value="Fishing Rights Leasing">
+                            Fishing Rights Leasing
+                        </option>
+                        <option value="License Leasing">
+                            License Leasing
+                        </option>
+                        <option value="Vessel Agreements">
+                            Vessel Agreements
+                        </option>
+                        <option value="Regulatory Compliance">
+                            Regulatory Compliance
+                        </option>
+                        <option value="General Inquiry">
+                            General Inquiry
+                        </option>
+                        <option value="Other">
+                            Other
+                        </option>
+                    </select>
+                    <span data-fs-error="subject"></span>
+                </div>
+                <div class="nmp-form-group">
+                    <label for="nmp-message">Message</label>
+                    <textarea id="nmp-message" name="message" data-fs-field required rows="5"
+                        placeholder="How can we help?"></textarea>
+                    <span data-fs-error="message"></span>
+                </div>
+                <button type="submit" data-fs-submit-btn class="nmp-btn nmp-btn--primary">
+                    Send Message
+                </button>
+            </form>
+        </section>
 
-      <section style="max-width: 1100px; margin: 2rem auto;">
-        <div class="container">
-          <h2>Since We Know You Want it, Here's Our Contact Details</h2>
-          <article>
-            <h3>Our Email Address</h3>
-            <p>info.namibiamarine@gmail.com</p>
-          </article>
-          <article>
-            <h3>Our Phone Number</h3>
-            <p>(Contact Via Email for Time Being)</p>
-          </article>
-          <article class="location">
-            <h3>Our Base of Operations</h3>
-            <address>
-              Walvis Bay, Erongo Region<br />
-              Namibia <br />
-              <iframe
-                title="Map showing Walvis Bay, Namibia"
-                src="https://www.google.com/maps?q=Walvis+Bay,+Namibia&output=embed"
-                width="600"
-                height="450"
-                style="border:0;"
-                loading="lazy"
-                allowfullscreen=""
-              ></iframe>
-            </address>
-          </article>
-        </div>
-      </section>
+        <section style="max-width: 1100px; margin: 2rem auto">
+            <div class="container">
+                <h2>
+                    Since We Know You Want it, Here's Our Contact Details
+                </h2>
+                <article>
+                    <h3>Our Email Address</h3>
+                    <p>info.namibiamarine@gmail.com</p>
+                </article>
+                <article>
+                    <h3>Our Phone Number</h3>
+                    <p>(Contact Via Email for Time Being)</p>
+                </article>
+                <article class="location">
+                    <h3>Our Base of Operations</h3>
+                    <address>
+                        Walvis Bay, Erongo Region<br />
+                        Namibia <br />
+                        <iframe title="Map showing Walvis Bay, Namibia"
+                            src="https://www.google.com/maps?q=Walvis+Bay,+Namibia&output=embed" width="600"
+                            height="450" style="border: 0" loading="lazy" allowfullscreen=""></iframe>
+                    </address>
+                </article>
+            </div>
+        </section>
     </main>
 
     <footer>
-      <p>Namibia Marine Products &amp; Namibia Marine Products Sashimi (Pty) Ltd - 100% Namibian Owned</p>
-      <p>&copy; 2026 NMP. All rights reserved.</p>
+        <p>
+            Namibia Marine Products &amp; Namibia Marine Products Sashimi
+            (Pty) Ltd - 100% Namibian Owned
+        </p>
+        <p>
+            &copy; 2026 NMP. All rights reserved. |
+            <a href="privacy-policy.html">Privacy Policy</a>
+        </p>
     </footer>
-  </body>
+
+    <!-- Success Notification Modal -->
+    <div id="nmp-success-modal" class="nmp-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+        aria-describedby="modal-desc" aria-hidden="true">
+        <div class="nmp-modal-overlay" tabindex="-1"></div>
+        <div class="nmp-modal-container">
+            <div class="nmp-modal-content">
+                <div class="nmp-success-icon-wrapper">
+                    <svg class="nmp-success-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="nmp-success-circle" cx="26" cy="26" r="25" fill="none" />
+                        <path class="nmp-success-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                    </svg>
+                </div>
+                <h3 id="modal-title">Message Sent!</h3>
+                <p id="modal-desc">Thank you for reaching out. Your message has been successfully sent to NMP. We'll be
+                    in touch with you shortly.</p>
+                <button type="button" id="nmp-close-modal-btn" class="nmp-btn nmp-btn--primary">Close</button>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
