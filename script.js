@@ -1,216 +1,216 @@
 (function () {
-  'use strict';
+    "use strict";
 
-  /* ── 0. CSS :has() Feature Support Detection ─────────────── */
+    document.documentElement.classList.add("js");
 
-  try {
-    if (!CSS.supports("selector(:has(*))")) {
-      document.documentElement.classList.add("no-has");
-    }
-  } catch (e) {
-    document.documentElement.classList.add("no-has");
-  }
+    function initHeaderShadow() {
+        const header = document.querySelector("[data-site-header]");
+        if (!header) return;
 
-  /* ── 1. Page Load Fade ───────────────────────────────────── */
+        let isScrolled = null;
+        let ticking = false;
 
-  function initPageFade() {
-    window.addEventListener('load', () => {
-      document.body.classList.add('nmp-loaded');
-    });
-  }
+        const updateHeader = () => {
+            const nextIsScrolled = window.scrollY > 8;
 
-  /* ── 2. Hero Entrance ────────────────────────────────────── */
+            if (nextIsScrolled !== isScrolled) {
+                header.classList.toggle("is-scrolled", nextIsScrolled);
+                isScrolled = nextIsScrolled;
+            }
 
-  function initHeroEntrance() {
-    const hero = document.querySelector('main > section:first-child');
-    if (!hero) return;
+            ticking = false;
+        };
 
-    const heading = hero.querySelector('h2');
-    const tagline = hero.querySelector('p');
-
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        if (heading) heading.classList.add('nmp-hero-in');
-        if (tagline) tagline.classList.add('nmp-hero-in');
-      }, 120);
-    });
-  }
-
-  /* ── 3. Staff & Owners expandable buttons ───────────── */
-
-  function initExpandableCards() {
-    document.querySelectorAll('article.expandable').forEach(article => {
-      const header = article.querySelector('.card-header');
-      const btn = article.querySelector('.expand-btn');
-
-      if (!header || !btn) return;
-
-      header.addEventListener('click', () => {
-        const isOpen = article.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', isOpen);
-      });
-    });
-  }
-
-  /* ── 4. Scroll Reveal via IntersectionObserver ───────────── */
-
-  function initScrollReveal() {
-    if (!('IntersectionObserver' in window)) {
-      // Fallback: just make everything visible immediately
-      document.querySelectorAll('.nmp-reveal').forEach(el => {
-        el.classList.add('nmp-visible');
-      });
-      return;
+        updateHeader();
+        window.addEventListener(
+            "scroll",
+            () => {
+                if (ticking) return;
+                ticking = true;
+                window.requestAnimationFrame(updateHeader);
+            },
+            { passive: true }
+        );
     }
 
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('nmp-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
-      }
-    );
+    function initReveal() {
+        const revealItems = document.querySelectorAll("[data-reveal]");
+        if (!revealItems.length) return;
 
-    document.querySelectorAll('.nmp-reveal').forEach(el => {
-      observer.observe(el);
-    });
-  }
-
-  /* ── 5. Mark Elements for Scroll Reveal ─────────────────── */
-
-  function markRevealTargets() {
-    const selectors = [
-      'main > section:nth-child(2)',
-      'main > section:nth-child(2) p',
-      'main > section:nth-child(3) article',
-      'main > section:nth-child(4) article',
-      'main > section:has(form) > h2',
-      'main > section:has(form) > p',
-      'main > section:has(form) form',
-      'main > section:last-of-type article'
-    ];
-
-    selectors.forEach(selector => {
-      try {
-        document.querySelectorAll(selector).forEach(el => {
-          el.classList.add('nmp-reveal');
-        });
-      } catch (e) {
-        // :has() not supported in older browsers — skip gracefully
-      }
-    });
-
-    // Section headings (h2s inside main sections, excluding hero)
-    const sections = document.querySelectorAll('main > section');
-    sections.forEach((section, index) => {
-      if (index === 0) return; // skip hero — handled separately
-      const h2 = section.querySelector('h2');
-      if (h2) h2.classList.add('nmp-reveal');
-    });
-  }
-
-  /* ── 6. Contact Form (Formspree) ────────────────────────── */
-
-  function initContactForm() {
-    const form = document.getElementById('nmp-contact-form');
-    if (!form) return;
-
-    const modal = document.getElementById('nmp-success-modal');
-    const closeButtons = document.querySelectorAll('.nmp-modal-close, #nmp-close-modal-btn');
-    const overlay = document.querySelector('.nmp-modal-overlay');
-    const submitBtn = form.querySelector('[data-fs-submit-btn]');
-
-    function openModal() {
-      if (!modal) return;
-      modal.classList.add('is-active');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-      const closeBtn = document.getElementById('nmp-close-modal-btn');
-      if (closeBtn) closeBtn.focus();
-    }
-
-    function closeModal() {
-      if (!modal) return;
-      modal.classList.remove('is-active');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      if (submitBtn) submitBtn.focus();
-    }
-
-    closeButtons.forEach(btn => btn.addEventListener('click', closeModal));
-    if (overlay) overlay.addEventListener('click', closeModal);
-
-    window.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && modal?.classList.contains('is-active')) closeModal();
-    });
-
-    // Focus trap
-    window.addEventListener('keydown', e => {
-      if (!modal?.classList.contains('is-active')) return;
-      const focusable = modal.querySelectorAll('button, [tabindex="0"]');
-      if (!focusable.length) return;
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (e.key === 'Tab') {
-        if (e.shiftKey && document.activeElement === first) {
-          last.focus(); e.preventDefault();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          first.focus(); e.preventDefault();
+        if (!("IntersectionObserver" in window)) {
+            revealItems.forEach((item) => item.classList.add("is-visible"));
+            return;
         }
-      }
-    });
 
-    // Handle submission manually
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                });
+            },
+            {
+                rootMargin: "0px 0px -10% 0px",
+                threshold: 0.16
+            }
+        );
 
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending…';
-      }
+        revealItems.forEach((item) => observer.observe(item));
+    }
 
-      try {
-        const response = await fetch('https://formspree.io/f/mpqblbje', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(form)
+    function initExpandableCards() {
+        document.querySelectorAll(".person-card--expandable").forEach((card) => {
+            const button = card.querySelector(".expand-btn");
+            const body = card.querySelector(".person-card__body");
+            if (!button || !body) return;
+
+            button.addEventListener("click", () => {
+                const isOpen = card.classList.toggle("is-open");
+                button.setAttribute("aria-expanded", String(isOpen));
+                body.setAttribute("aria-hidden", String(!isOpen));
+            });
+        });
+    }
+
+    function initContactForm() {
+        const form = document.getElementById("nmp-contact-form");
+        if (!form) return;
+
+        const endpoint = form.getAttribute("action") || "https://formspree.io/f/mpqblbje";
+        const submitButton = form.querySelector("[data-fs-submit-btn]");
+        const status = form.querySelector("[data-form-status]");
+        const modal = document.getElementById("nmp-success-modal");
+        const modalCloseItems = modal ? modal.querySelectorAll("[data-modal-close]") : [];
+        let lastFocusedElement = null;
+
+        function setStatus(type, message) {
+            if (!status) return;
+            status.textContent = message;
+            status.className = "form-status is-visible";
+            status.classList.add(type === "success" ? "is-success" : "is-error");
+        }
+
+        function clearStatus() {
+            if (!status) return;
+            status.textContent = "";
+            status.className = "form-status";
+        }
+
+        function setSubmitting(isSubmitting) {
+            if (!submitButton) return;
+            submitButton.disabled = isSubmitting;
+            submitButton.textContent = isSubmitting ? "Sending..." : "Send Message";
+        }
+
+        function getFocusableModalItems() {
+            if (!modal) return [];
+            return Array.from(
+                modal.querySelectorAll(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                )
+            ).filter((item) => !item.hasAttribute("disabled") && item.offsetParent !== null);
+        }
+
+        function openModal() {
+            if (!modal) return;
+            lastFocusedElement = document.activeElement;
+            modal.hidden = false;
+            document.body.style.overflow = "hidden";
+
+            window.setTimeout(() => {
+                const closeButton = document.getElementById("nmp-close-modal-btn");
+                if (closeButton) closeButton.focus();
+            }, 0);
+        }
+
+        function closeModal() {
+            if (!modal || modal.hidden) return;
+            modal.hidden = true;
+            document.body.style.overflow = "";
+
+            if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+                lastFocusedElement.focus();
+            }
+        }
+
+        modalCloseItems.forEach((item) => item.addEventListener("click", closeModal));
+
+        window.addEventListener("keydown", (event) => {
+            if (!modal || modal.hidden) return;
+
+            if (event.key === "Escape") {
+                closeModal();
+                return;
+            }
+
+            if (event.key !== "Tab") return;
+
+            const focusable = getFocusableModalItems();
+            if (!focusable.length) return;
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
         });
 
-        if (response.ok) {
-          form.reset();
-          openModal();
-        } else {
-          const data = await response.json();
-          const msg = data?.errors?.map(e => e.message).join(', ') || 'Something went wrong. Please try again.';
-          alert(msg);
-        }
-      } catch (err) {
-        alert('Network error. Please check your connection and try again.');
-      } finally {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send Message';
-        }
-      }
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            clearStatus();
+
+            if (!form.reportValidity()) {
+                return;
+            }
+
+            setSubmitting(true);
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json"
+                    },
+                    body: new FormData(form)
+                });
+
+                if (!response.ok) {
+                    let message = "Something went wrong. Please try again.";
+
+                    try {
+                        const data = await response.json();
+                        if (Array.isArray(data.errors) && data.errors.length) {
+                            message = data.errors.map((error) => error.message).join(", ");
+                        }
+                    } catch (error) {
+                        message = "Something went wrong. Please try again.";
+                    }
+
+                    setStatus("error", message);
+                    return;
+                }
+
+                form.reset();
+                setStatus("success", "Message sent successfully. Thank you for reaching out to NMP.");
+                openModal();
+            } catch (error) {
+                setStatus("error", "Network error. Please check your connection and try again.");
+            } finally {
+                setSubmitting(false);
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        initHeaderShadow();
+        initReveal();
+        initExpandableCards();
+        initContactForm();
     });
-  }
-
-  /* ── Init ────────────────────────────────────────────────── */
-
-  document.addEventListener('DOMContentLoaded', () => {
-    initPageFade();
-    initHeroEntrance();
-    initExpandableCards();
-    markRevealTargets();
-    initScrollReveal();
-    initContactForm();
-  });
-
-}());
+})();

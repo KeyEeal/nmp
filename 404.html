@@ -3,51 +3,34 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-            name="description"
-            content="Page not found — Namibia Marine Products."
-        />
+        <meta name="description" content="Page not found &mdash; Namibia Marine Products." />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; base-uri 'self'; form-action 'self'"
+            content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; base-uri 'self'; form-action 'self'"
         />
-
         <link rel="canonical" href="https://namibiamarine.com/404.html" />
-
-        <!-- Preconnect for fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet"
         />
-
         <link rel="stylesheet" href="styles.css" />
-        <link
-            rel="shortcut icon"
-            type="image/x-icon"
-            href="./images/NMP-fish.png"
-        />
-        <link rel="apple-touch-icon" href="./images/NMP-fish.png" />
-
+        <link rel="icon" type="image/png" href="./images/NMP-fish.png" />
+        <link rel="apple-touch-icon" href="./images/nmp-card.png" />
         <script src="script.js" defer></script>
-        <title>Page Not Found — Namibia Marine Products</title>
-
-        <noscript
-            ><style>
-                body {
-                    opacity: 1 !important;
-                }
-            </style></noscript
-        >
+        <title>Page Not Found &mdash; Namibia Marine Products</title>
     </head>
     <body>
         <a href="#main-content" class="skip-link">Skip to main content</a>
-        <header>
-            <h1>Namibia Marine Products</h1>
-            <nav>
+        <header class="site-header" data-site-header>
+            <a class="brand" href="index.html" aria-label="Namibia Marine Products home">
+                <img src="./images/NMP-fish.png" alt="" width="48" height="48" />
+                <span>Namibia Marine Products</span>
+            </a>
+            <nav class="site-nav" aria-label="Primary navigation">
                 <ul>
                     <li><a href="index.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -57,40 +40,26 @@
         </header>
 
         <main id="main-content">
-            <section style="text-align: center; padding: 8rem 2rem">
-                <h2
-                    style="
-                        font-size: clamp(3rem, 10vw, 6rem);
-                        color: #feffff;
-                        margin-bottom: 1rem;
-                    "
-                >
-                    404
-                </h2>
-                <p
-                    style="
-                        font-size: 1.25rem;
-                        color: #53abeb;
-                        margin-bottom: 2.5rem;
-                    "
-                >
-                    This page has drifted out to sea.
-                </p>
-                <a href="index.html" class="nmp-btn nmp-btn--primary">
-                    Return to Shore
-                </a>
+            <section class="hero hero--compact hero--centered">
+                <div class="container container--narrow hero__content hero__content--center" data-reveal>
+                    <p class="error-code">404</p>
+                    <h1>This page has drifted out to sea.</h1>
+                    <a href="index.html" class="nmp-btn nmp-btn--primary">Return to Shore</a>
+                </div>
             </section>
         </main>
 
-        <footer>
-            <p>
-                Namibia Marine Products &amp; Namibia Marine Products Sashimi
-                (Pty) Ltd - 100% Namibian Owned
-            </p>
-            <p>
-                &copy; 2026 NMP. All rights reserved. |
-                <a href="privacy-policy.html">Privacy Policy</a>
-            </p>
+        <footer class="site-footer">
+            <div class="container site-footer__inner">
+                <p>
+                    Namibia Marine Products &amp; Namibia Marine Products Sashimi
+                    (Pty) Ltd - 100% Namibian Owned
+                </p>
+                <p>
+                    &copy; 2026 NMP. All rights reserved. |
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                </p>
+            </div>
         </footer>
     </body>
 </html>
