@@ -47,7 +47,7 @@ body {
     background-repeat: no-repeat;
     background-position: center top;
     background-size: min(100vw, 177.78vh) auto;
-    background-attachment: scroll;
+    background-attachment: fixed;
     line-height: 1.7;
     overflow-x: hidden;
     text-rendering: optimizeLegibility;
@@ -1031,7 +1031,7 @@ html.js [data-reveal]:nth-child(4) {
 @media (max-width: 760px) {
     body {
         background-image: url("./images/MobileBackground.svg");
-        background-attachment: scroll;
+        background-attachment: fixed;
         background-position: center top;
         background-size: min(100vw, 177.78vh) auto;
     }
